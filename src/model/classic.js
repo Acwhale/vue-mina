@@ -1,7 +1,6 @@
 
 import axios from 'axios'
 class ClassicModel  {
-   
     /**
      * 获取最新期刊
      */

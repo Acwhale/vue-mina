@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 axios.defaults.baseURL = '/api';
 // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers['Content-Type'] = 'application/json';
-axios.defaults.headers['appkey'] = 'xJW1wcWQBDj3FBpX';
+axios.defaults.headers['appkey'] = config.appkey;
 /* eslint-disable no-new */
 fastclick.attach(document.body)
 new Vue({
@@ -20,8 +20,5 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
-  mounted(){
-    console.log(config.config.api_base_url)
-    console.log(config.config.appkey)
-  }
+
 })
