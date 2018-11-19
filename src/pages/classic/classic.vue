@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <div class="container">
         <div class="header">
             <cmp-episode class="episode" :index="index"></cmp-episode>
             <cmp-like class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
         </div>
         <cmp-movie :img="img" :content="content"></cmp-movie>
+        <cpm-navi class="navi" :first="first" :latest="latest" :title="title"></cpm-navi>
     </div>
 </template>
 <script>
@@ -14,6 +15,7 @@ import LikeModel from '@/model/like.js'
 import CmpLike from '@/components/like/like'
 import CmpMovie from '@/components/classic/movie/movie'
 import CmpEpisode from '@/components/episode/episode'
+import CpmNavi from '@/components/navi/navi'
 
 let classModel = new ClassicModel()
 let likeModel = new LikeModel()
@@ -28,13 +30,17 @@ export default {
             content:'',
             artID: 0 ,
             category: 0,
-            index:0
+            index:0,
+            latest:true,
+            first:false,
+            title:''
         }
     },
     components:{
         CmpLike,
         CmpMovie,
-        CmpEpisode
+        CmpEpisode,
+        CpmNavi
     },
     methods:{
         getLastet(){
@@ -48,6 +54,7 @@ export default {
                     this.artID = res.data.id
                     this.category = res.data.type
                     this.index = res.data.index
+                    this.title = res.data.title
                     // console.log(this.count)
                 }
             }).catch((error) => {
@@ -70,7 +77,13 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+    .container{
+        display flex
+        flex-direction column
+        align-items center
+    }
     .header{
+        width 100%
         margin-top .2rem
         margin-bottom .2rem
         display flex
@@ -86,5 +99,9 @@ export default {
     }
     .like{
         margin-top .1rem
+    }
+    .navi{
+         position absolute
+         bottom .4rem
     }
 </style>

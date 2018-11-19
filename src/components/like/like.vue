@@ -39,6 +39,7 @@ export default {
         }
     },
     created(){
+        
         this.selfLike = this.like 
         this.selfCount = this.count
     }

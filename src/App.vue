@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="header">
     <!-- <img src="./assets/logo.png"> -->
      <div class="title border-bottom">林间有风</div>
     <router-view/>
@@ -13,13 +13,14 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
-  .title
-        overflow hidden
-        width 100%
-        height 0
-        padding-bottom 15%
-        text-align center
-        line-height 1.2rem
-        color #666
-        font-size .32rem
+  .header
+    display flex
+    flex-direction  column
+    align-items center
+    .title
+          width 100%
+          text-align center
+          line-height 1.2rem
+          color #666
+          font-size .32rem
 </style>
