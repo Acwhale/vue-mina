@@ -1,8 +1,8 @@
 <template>
     <div class="navi-container">
-        <img class="icon" :src="latest ? leftDis : left" alt="">
+        <img @click="onLeft" class="icon" :src="latest ? leftDis : left" alt="">
         <div class="title">{{title}}</div>
-        <img class="icon" :src="first ? rightDis : right" alt="">
+        <img @click="onRight" class="icon" :src="first ? rightDis : right" alt="">
     </div>
 </template>
 <script>
@@ -24,6 +24,24 @@ export default {
         title:String,
         first:Boolean,
         latest:Boolean
+    },
+    methods:{
+        /**
+         * 获取上一期刊
+         */
+        onLeft(){
+            if(!this.latest){
+                this.$emit('left')
+            } 
+        },
+        /**
+         * 获取下一期刊
+         */
+        onRight(){
+           if(!this.first){
+                this.$emit('right')
+           }
+        }
     }
     
 }

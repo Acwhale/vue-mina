@@ -1,7 +1,7 @@
 <template>
     <div class="container" @click="onLike" >
         <img :src="selfLike ? yesSrc : noSrc" alt="like">
-        <span>{{selfCount}}</span>
+        <span v-html="selfCount"></span>
     </div>
    
 </template>
@@ -33,13 +33,16 @@ export default {
             点击like组件
          */
         onLike(e){
+
             this.selfLike = !this.selfLike 
             this.selfCount = this.selfLike ? this.selfCount+1 : this.selfCount-1
             this.$emit('status',this.selfLike)
-        }
-    },
-    created(){
+        },
         
+    },
+
+    created(){
+        console.log(this.count)
         this.selfLike = this.like 
         this.selfCount = this.count
     }

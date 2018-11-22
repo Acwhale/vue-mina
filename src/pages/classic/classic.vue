@@ -5,7 +5,7 @@
             <cmp-like class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
         </div>
         <cmp-movie :img="img" :content="content"></cmp-movie>
-        <cpm-navi class="navi" :first="first" :latest="latest" :title="title"></cpm-navi>
+        <cpm-navi @left="handleNext" @right="handlePervious" class="navi" :first="first" :latest="latest" :title="title"></cpm-navi>
     </div>
 </template>
 <script>
@@ -69,6 +69,18 @@ export default {
             likeModel.like(like,this.artID,this.category).then((res)=>{
                 console.log(res)
             })
+        },
+        /**
+         * handleNext
+         * 获取上一期
+         */
+        handleNext(){
+        },
+        /**
+         * handlePervious
+         * 获取下一期
+         */
+        handlePervious(){
         }
     },
     mounted(){
