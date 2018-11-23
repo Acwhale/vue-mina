@@ -1,0 +1,6 @@
+def fx(name):
+    name = name.split(' ')
+    print(name)
+
+name = input('输入')
+fx(name)

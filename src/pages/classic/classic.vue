@@ -55,11 +55,18 @@ export default {
                     this.category = res.data.type
                     this.index = res.data.index
                     this.title = res.data.title
+                    this.setLatestIndex(this.index)
                     // console.log(this.count)
                 }
             }).catch((error) => {
                 console.log(error)
             })
+        },
+        /**
+         * 设置最新一期的期刊
+         */
+        setLatestIndex(index){
+            localStorage.setItem('latest',index)
         },
         /**
          * handelOnLike 处理用户点赞还是取消点赞
@@ -81,6 +88,19 @@ export default {
          * 获取下一期
          */
         handlePervious(){
+            classModel.getPrevious(this.index).then(res=>{
+              if(res.status == 200 && res.statusText == 'OK'){
+                    this.count = res.data.fav_nums
+                    this.like =  res.data.like_status == 0 ? false : true 
+                    this.img = res.data.image
+                    this.content = res.data.content
+                    this.artID = res.data.id
+                    this.category = res.data.type
+                    this.index = res.data.index
+                    this.title = res.data.title
+                    // console.log(this.count)
+                }
+            })
         }
     },
     mounted(){
