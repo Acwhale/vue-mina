@@ -33,15 +33,22 @@ export default {
             点击like组件
          */
         onLike(e){
-
             this.selfLike = !this.selfLike 
+            // console.log(this.selfCount)
             this.selfCount = this.selfLike ? this.selfCount+1 : this.selfCount-1
             this.$emit('status',this.selfLike)
         },
         
     },
-
-    created(){
+    watch:{
+        count:function(val){
+            this.selfCount = val
+        },
+        like:function(val){
+            this.like = val
+        }
+    },
+    mounted(){
         this.selfLike = this.like 
         this.selfCount = this.count
     }

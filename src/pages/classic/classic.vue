@@ -82,14 +82,23 @@ export default {
          * 获取上一期
          */
         handleNext(){
+            this._updateClassic('next')
         },
         /**
          * handlePervious
          * 获取下一期
          */
         handlePervious(){
-            classModel.getPrevious(this.index).then(res=>{
-              if(res.status == 200 && res.statusText == 'OK'){
+           this._updateClassic('previous')
+        },
+
+        _updateClassic(nextOrPrevious){
+            // TODO 做缓存
+            // console.log(this.index)
+            // let key = nextOrPrevious == 'next' ? this._getKey(this.index + 1) : this._getKey(this.index + 1)
+
+            classModel.getClassic(this.index,nextOrPrevious).then(res=>{
+                if(res.status == 200 && res.statusText == 'OK'){
                     this.count = res.data.fav_nums
                     this.like =  res.data.like_status == 0 ? false : true 
                     this.img = res.data.image
@@ -98,9 +107,15 @@ export default {
                     this.category = res.data.type
                     this.index = res.data.index
                     this.title = res.data.title
+                    this.latest = classModel.isLatest(this.index)
+                    this.first = classModel.isFirst(this.index)
                     // console.log(this.count)
                 }
             })
+        },
+
+        _getKey(index){
+            return 'classic-' + index
         }
     },
     mounted(){

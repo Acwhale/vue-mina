@@ -8,10 +8,16 @@ class ClassicModel  {
         return axios.get('classic/latest') 
     }
     /**
-     * 获取当前一期的上一期
+     * 获取当前一期的上一期/下一期
      */
-    getPrevious(index){
-        return axios.get(`classic/${index}/previous`)
+    getClassic(index,nextOrOPrevious){
+        switch(nextOrOPrevious){
+            case 'previous' :
+                return axios.get(`classic/${index}/previous`)
+            case 'next':
+                return axios.get(`classic/${index}/next`)
+        }
+        
     }
     /**
      * 是否是第一期
@@ -23,8 +29,12 @@ class ClassicModel  {
      * 是否是最新一期
      */
     isLatest(index){
-       let latestIndex = localStorage.getItem('latest')
-       return latestIndex == index ? true : false
+       try {
+            let latestIndex = localStorage.getItem('latest')
+            return latestIndex == index ? true : false
+       } catch (error) {
+           console.log(error)
+       }  
     }
 }
 
