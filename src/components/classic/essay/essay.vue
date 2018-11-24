@@ -9,11 +9,16 @@
 <script>
 import essaySrc from './images/essay@tag.png'
 export default {
-    name:CmpEssay,
+    name:"CmpEssay",
     props:{
         img:String,
         content:String
-    }
+    },
+    data(){
+        return{
+            essaySrc
+        }
+    },
 }
 </script>
 

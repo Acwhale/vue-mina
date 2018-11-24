@@ -34,24 +34,25 @@ export default {
          */
         onLike(e){
             this.selfLike = !this.selfLike 
-            // console.log(this.selfCount)
             this.selfCount = this.selfLike ? this.selfCount+1 : this.selfCount-1
             this.$emit('status',this.selfLike)
         },
         
     },
+    // 链接地址：https://segmentfault.com/q/1010000009036850
     watch:{
         count:function(val){
             this.selfCount = val
         },
         like:function(val){
-            this.like = val
+            this.selfLike = val
         }
     },
-    mounted(){
-        this.selfLike = this.like 
-        this.selfCount = this.count
-    }
+    // mounted(){
+    //     this.selfLike = this.like
+    //     this.selfCount = this.count 
+    // }
+    
 }
 </script>
 <style lang='stylus' scoped>

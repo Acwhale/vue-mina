@@ -11,13 +11,15 @@ export default {
     name:'CmpMovie',
     props:{
         img:String,
-        content:String
+        content:String,
+        category:Number
     },
     data(){
         return{
             movieTag,
         }
-    }
+    },
+   
 }
 </script>
 <style lang='stylus' scoped>

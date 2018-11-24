@@ -1,8 +1,8 @@
-<template
+<template>
     <div>
         <img :src="img" alt="">
         <img :src="pauseSrc" alt="">
-        <img :src="musicTag" alt="">
+        <img class="music-tag" :src="musicTag" alt="">
         <div>{{content}}</div>
     </div>
 </template>
@@ -20,7 +20,8 @@ export default {
     data(){
         return{
             pauseSrc,
-            playSrc
+            playSrc,
+            musicTag
         }
     }
 }

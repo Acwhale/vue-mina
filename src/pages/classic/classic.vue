@@ -2,9 +2,11 @@
     <div class="container">
         <div class="header">
             <cmp-episode class="episode" :index="index"></cmp-episode>
-            <cmp-like class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
+            <cmp-like  class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
         </div>
-        <cmp-movie :img="img" :content="content"></cmp-movie>
+        <cmp-movie v-show="category == 100" :img="img" :content="content" ></cmp-movie>
+        <cmp-music v-show="category == 200" :img="img" :content="content"></cmp-music>
+        <cmp-essay v-show="category == 300" :img="img" :content="content"></cmp-essay>
         <cpm-navi @left="handleNext" @right="handlePervious" class="navi" :first="first" :latest="latest" :title="title"></cpm-navi>
     </div>
 </template>
@@ -14,6 +16,8 @@ import LikeModel from '@/model/like.js'
 
 import CmpLike from '@/components/like/like'
 import CmpMovie from '@/components/classic/movie/movie'
+import CmpEssay from '@/components/classic/essay/essay'
+import CmpMusic from '@/components/classic/music/music'
 import CmpEpisode from '@/components/episode/episode'
 import CpmNavi from '@/components/navi/navi'
 
@@ -33,12 +37,14 @@ export default {
             index:0,
             latest:true,
             first:false,
-            title:''
+            title:'',
         }
     },
     components:{
         CmpLike,
         CmpMovie,
+        CmpEssay,
+        CmpMusic,
         CmpEpisode,
         CpmNavi
     },
@@ -56,6 +62,7 @@ export default {
                     this.index = res.data.index
                     this.title = res.data.title
                     this.setLatestIndex(this.index)
+                   
                     // console.log(this.count)
                 }
             }).catch((error) => {
