@@ -4,9 +4,9 @@
             <cmp-episode class="episode" :index="index"></cmp-episode>
             <cmp-like  class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
         </div>
-        <cmp-movie v-show="category == 100" :img="img" :content="content" ></cmp-movie>
-        <cmp-music v-show="category == 200" :img="img" :content="content"></cmp-music>
-        <cmp-essay v-show="category == 300" :img="img" :content="content"></cmp-essay>
+        <cmp-movie v-if="category == 100" :img="img" :content="content" ></cmp-movie>
+        <cmp-music v-if="category == 200" :img="img" :content="content" :musicSrc="musicSrc"></cmp-music>
+        <cmp-essay v-if="category == 300" :img="img" :content="content"></cmp-essay>
         <cpm-navi @left="handleNext" @right="handlePervious" class="navi" :first="first" :latest="latest" :title="title"></cpm-navi>
     </div>
 </template>
@@ -38,6 +38,7 @@ export default {
             latest:true,
             first:false,
             title:'',
+            musicSrc: ''
         }
     },
     components:{
@@ -106,6 +107,9 @@ export default {
 
             classModel.getClassic(this.index,nextOrPrevious).then(res=>{
                 if(res.status == 200 && res.statusText == 'OK'){
+                    if(res.data.type == 200){
+                        this.musicSrc = res.data.url
+                    }
                     this.count = res.data.fav_nums
                     this.like =  res.data.like_status == 0 ? false : true 
                     this.img = res.data.image
@@ -135,6 +139,7 @@ export default {
         display flex
         flex-direction column
         align-items center
+        width 100%
     }
     .header{
         width 100%

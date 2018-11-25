@@ -22,6 +22,28 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang='stylus' scoped>
+    .essay-container {
+        display flex
+        flex-direction column
+        align-items center
+        width 100%
+    }
+    .essay-img{
+        width 7.5rem
+        height 5rem
+    }
+            
+    .essay-tag{
+        position relative
+        right 3.1rem
+        bottom .58rem
+        width .46rem
+        height 1.42rem
+    }
+    .essay-content{
+        max-width 5.5rem
+        line-height .5rem
+        font-size .36rem
+    } 
 </style>
