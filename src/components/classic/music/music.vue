@@ -3,6 +3,7 @@
         <img class="music-img" :src="img" alt="">
         <img class="music-player" @click="handleMusicPlay" :src="!playing ? playSrc : pauseSrc" alt="">
         <img class="music-tag" :src="musicTag" alt="">
+        <audio ref="music" :src="musicSrc"></audio>
         <div class="music-content" >{{content}}</div>
     </div>
 </template>
@@ -27,11 +28,19 @@ export default {
         }
     },
     methods:{
-
         handleMusicPlay(){
-            let audio = new Audio()
+            this.playing = !this.playing
+            let audio = this.$refs.music
+            if(this.playing){
+                let src = audio.src
+                audio.src = src
+                audio.play()
+            }else{
+                 audio.pause()
+            }
         }
-    },
+       
+    }
 }
 </script>
 
