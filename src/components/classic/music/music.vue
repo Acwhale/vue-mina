@@ -1,6 +1,6 @@
 <template>
     <div class="music-container">
-        <img class="music-img" :src="img" alt="">
+        <img :class=" playing ? 'music-img rotation ' : 'music-img' " :src="img" alt="">
         <img class="music-player" @click="handleMusicPlay" :src="!playing ? playSrc : pauseSrc" alt="">
         <img class="music-tag" :src="musicTag" alt="">
         <audio ref="music" :src="musicSrc"></audio>
@@ -38,6 +38,9 @@ export default {
             }else{
                  audio.pause()
             }
+            audio.addEventListener('ended',()=>{
+                this.playing = false
+            },false);
         }
        
     }
@@ -69,5 +72,21 @@ export default {
         position relative
         bottom 1.6rem
         right 3.1rem
+    }
+    @-webkit-keyframes rotation {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    .rotation {
+    -webkit-transform: rotate(360deg);
+    animation: rotation 12s linear infinite;
+    -moz-animation: rotation 12s linear infinite;
+    -webkit-animation: rotation 12s linear infinite;
+    -o-animation: rotation 12s linear infinite;
     }
 </style>

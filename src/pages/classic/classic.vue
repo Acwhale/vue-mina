@@ -14,6 +14,7 @@
 import  ClassicModel  from '@/model/classic.js'
 import LikeModel from '@/model/like.js'
 
+
 import CmpLike from '@/components/like/like'
 import CmpMovie from '@/components/classic/movie/movie'
 import CmpEssay from '@/components/classic/essay/essay'
@@ -161,6 +162,6 @@ export default {
     }
     .navi{
          position absolute
-         bottom .4rem
+         bottom 1.4rem
     }
 </style>

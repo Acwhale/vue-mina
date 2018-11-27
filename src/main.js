@@ -15,6 +15,12 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 axios.defaults.headers['appkey'] = config.appkey;
 /* eslint-disable no-new */
 fastclick.attach(document.body)
+import { Tabbar, TabbarItem } from 'vant';
+import 'vant/lib/Tabbar/style';
+import 'vant/lib//Tabbar-Item/style';
+Vue.use(Tabbar).use(TabbarItem);
+
+
 new Vue({
   el: '#app',
   router,
