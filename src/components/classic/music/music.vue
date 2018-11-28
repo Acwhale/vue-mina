@@ -83,10 +83,10 @@ export default {
         }
     }
     .rotation {
-    -webkit-transform: rotate(360deg);
-    animation: rotation 12s linear infinite;
-    -moz-animation: rotation 12s linear infinite;
-    -webkit-animation: rotation 12s linear infinite;
-    -o-animation: rotation 12s linear infinite;
+        -webkit-transform: rotate(360deg);
+        animation: rotation 12s linear infinite;
+        -moz-animation: rotation 12s linear infinite;
+        -webkit-animation: rotation 12s linear infinite;
+        -o-animation: rotation 12s linear infinite;
     }
 </style>

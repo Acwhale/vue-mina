@@ -53,7 +53,7 @@ export default {
     methods:{
         getLastet(){
             classModel.getLatest().then((res) =>{
-                console.log(res.data)
+                // console.log(res.data)
                 if(res.status == 200 && res.statusText == 'OK'){
                     this.count = res.data.fav_nums
                     this.like =  res.data.like_status == 0 ? false : true 

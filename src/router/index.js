@@ -14,6 +14,11 @@ export default new Router({
       path: '/book',
       name: 'Book',
       component: () => import('@/pages/book/book')
+    },
+    {
+      path: '/my',
+      name: 'My',
+      component: () => import('@/pages/my/my')
     }
   ]
 })

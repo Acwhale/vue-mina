@@ -7,7 +7,7 @@ import fastclick from 'fastclick'
 import './assets/style/reset.css'
 import './assets/style/border.css'
 import axios from 'axios'
-import  config from '@/util/config'
+import config from '@/util/config'
 Vue.config.productionTip = false
 axios.defaults.baseURL = '/api';
 // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -19,7 +19,6 @@ import { Tabbar, TabbarItem } from 'vant';
 import 'vant/lib/Tabbar/style';
 import 'vant/lib//Tabbar-Item/style';
 Vue.use(Tabbar).use(TabbarItem);
-
 
 new Vue({
   el: '#app',

@@ -22,7 +22,7 @@
                   :src="props.active ? iconBook.active : iconBook.normal"
                   >
               </van-tabbar-item>
-              <van-tabbar-item >
+              <van-tabbar-item to="/my">
                   <span>我的</span>
                   <img
                   slot="icon"
