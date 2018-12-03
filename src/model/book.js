@@ -14,6 +14,25 @@ class BookModel {
     getMyBookCount(){
         return axios.get('book/favor/count')
     }
+
+    /**
+     * 获取书籍详细信息
+     */
+    getBookDeatail(id){
+        return axios.get(`book/${id}/detail`)
+    }
+    /**
+     * 获取书籍点赞信息
+     */
+    getLikeStatus(id){
+        return axios.get(`book/${id}/favor`)
+    }
+    /**
+     * 获取书籍的短评
+     */
+    getBookComments(id){
+        return axios.get(`book/${id}/short_comment`)
+    }
 }
 
 export default BookModel

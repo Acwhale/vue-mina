@@ -45,7 +45,6 @@ export default {
     methods : {
         getHotList(){
             bookModel.getHotList().then((res)=>{
-                console.log(res)
                 if(res.status == 200 &&　res.statusText == 'OK'){
                     this.books = res.data
                 }
