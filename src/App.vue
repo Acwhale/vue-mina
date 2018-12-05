@@ -61,7 +61,6 @@ export default {
         normal: my,
         active: myActive
       }
-      
     }
   }
 }

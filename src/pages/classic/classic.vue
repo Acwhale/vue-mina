@@ -21,6 +21,7 @@ import CmpEssay from '@/components/classic/essay/essay'
 import CmpMusic from '@/components/classic/music/music'
 import CmpEpisode from '@/components/episode/episode'
 import CpmNavi from '@/components/navi/navi'
+import { Toast } from 'vant';
 
 let classModel = new ClassicModel()
 let likeModel = new LikeModel()

@@ -15,10 +15,13 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 axios.defaults.headers['appkey'] = config.appkey;
 /* eslint-disable no-new */
 fastclick.attach(document.body)
+import { Toast } from 'vant';
 import { Tabbar, TabbarItem } from 'vant';
 import 'vant/lib/Tabbar/style';
 import 'vant/lib//Tabbar-Item/style';
 Vue.use(Tabbar).use(TabbarItem);
+import 'vant/lib//toast/style';
+Vue.use(Toast);
 
 new Vue({
   el: '#app',

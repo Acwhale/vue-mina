@@ -33,6 +33,17 @@ class BookModel {
     getBookComments(id){
         return axios.get(`book/${id}/short_comment`)
     }
+    /**
+     * 新增短评
+     */
+    addComment(id,content){
+        let url = 'book/add/short_comment'
+        let params = {
+            book_id:id,
+            content:content
+        }
+        return axios.post(url,params)
+    }
 }
 
 export default BookModel

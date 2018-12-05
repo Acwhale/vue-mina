@@ -1,6 +1,6 @@
 <template>
-    <div class="tag-container">
-        <span>{{text}}</span>
+    <div class="tag-container" @click="handleTag">
+        <span >{{text}}</span>
         <slot name="after"></slot>
     </div>
 </template>
@@ -10,6 +10,11 @@ export default {
     name : "CmpTag",
     props:{
         text:String
+    },
+    methods:{
+       handleTag(){
+           this.$emit('tag',this.text)
+       } 
     }
 }
 </script>
