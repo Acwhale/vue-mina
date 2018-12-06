@@ -1,14 +1,16 @@
 <template>
-    <div class="container">
-        <div class="header">
-            <cmp-episode class="episode" :index="index"></cmp-episode>
-            <cmp-like  class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
+   <div>
+        <div class="container">
+            <div class="header">
+                <cmp-episode class="episode" :index="index"></cmp-episode>
+                <cmp-like  class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
+            </div>
+            <cmp-movie v-if="category == 100" :img="img" :content="content" ></cmp-movie>
+            <cmp-music v-if="category == 200" :img="img" :content="content" :musicSrc="musicSrc"></cmp-music>
+            <cmp-essay v-if="category == 300" :img="img" :content="content"></cmp-essay>
+            <cpm-navi @left="handleNext" @right="handlePervious" class="navi" :first="first" :latest="latest" :title="title"></cpm-navi>
         </div>
-        <cmp-movie v-if="category == 100" :img="img" :content="content" ></cmp-movie>
-        <cmp-music v-if="category == 200" :img="img" :content="content" :musicSrc="musicSrc"></cmp-music>
-        <cmp-essay v-if="category == 300" :img="img" :content="content"></cmp-essay>
-        <cpm-navi @left="handleNext" @right="handlePervious" class="navi" :first="first" :latest="latest" :title="title"></cpm-navi>
-    </div>
+   </div>
 </template>
 <script>
 import  ClassicModel  from '@/model/classic.js'
@@ -21,6 +23,7 @@ import CmpEssay from '@/components/classic/essay/essay'
 import CmpMusic from '@/components/classic/music/music'
 import CmpEpisode from '@/components/episode/episode'
 import CpmNavi from '@/components/navi/navi'
+
 import { Toast } from 'vant';
 
 let classModel = new ClassicModel()

@@ -1,22 +1,25 @@
 <template>
-    <div class="container">
-        <div class="header">
-            <div class="box">
-                <img :src="search" alt="">
-                <span>书籍搜索</span>
-            </div>
-        </div>
-        <div class="sub-container">
-            <img class="head-img" :src="quality" alt="">
-            <div class="books-container" >
-                <div  v-for="(item,key) of books" :key="key" >
-                    <router-link :to="{ name: 'BookDetail', params: { id: item.id }}">
-                        <cmp-book  v-if="item" :book="item" ></cmp-book>
-                    </router-link>
+    <div>
+        <cmp-search v-show="searching" @cancel="handleCancel"></cmp-search>
+        <div class="container" v-show="!searching">
+            <div class="header">
+                <div class="box" @click="handleSearch">
+                    <img :src="search" alt="">
+                    <span>书籍搜索</span>
                 </div>
             </div>
+            <div class="sub-container">
+                <img class="head-img" :src="quality" alt="">
+                <div class="books-container" >
+                    <div  v-for="(item,key) of books" :key="key" >
+                        <router-link :to="{ name: 'BookDetail', params: { id: item.id }}">
+                            <cmp-book  v-if="item" :book="item" ></cmp-book>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        
     </div>
 </template>
 
@@ -25,6 +28,8 @@ import search from '@/assets/images/icon/search.png'
 import quality from '@/assets/images/book/quality.png'
 
 import CmpBook from '@/components/book/book'
+import CmpSearch from "@/components/search/search"
+
 
 import BookModel from '@/model/book.js'
 
@@ -33,16 +38,24 @@ let bookModel = new BookModel()
 export default {
     name : "Book",
     components:{
-        CmpBook
+        CmpBook,
+        CmpSearch
     },
     data (){
         return {
             books : [],
             search,
-            quality
+            quality,
+            searching:false
         }
     },
     methods : {
+        handleSearch(){
+            this.searching = true
+        },
+        handleCancel(){
+             this.searching = false
+        },
         getHotList(){
             bookModel.getHotList().then((res)=>{
                 if(res.status == 200 &&　res.statusText == 'OK'){
@@ -59,13 +72,14 @@ export default {
 <style lang="stylus" scoped>
     .container{
         position absolute
+        right 0
         display flex
         flex-direction column
         align-items center
         width 100%
     }
     .header{
-        position fixed
+        // position fixed
         background-color #ffffff
         height 1rem
         width 100%

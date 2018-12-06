@@ -55,7 +55,7 @@
                 <span class="cancel" @click="handleCancel">取消</span>
             </div>
             <div class="comments-container">
-                   <div v-for="(item,index) of comments.comments" :key="index">
+                <div v-for="(item,index) of comments.comments" :key="index">
                     <cmp-tag class="ex-tag" :text="item.content"  @tag='handlePost'> 
                     <span class="num" slot="after">{{"+" +item.nums}}</span>
                     </cmp-tag>
@@ -67,22 +67,22 @@
     </div>
 </template>
 <script>
-import CmpTag from "@/components/tag/tag";
+import CmpTag from "@/components/tag/tag"
 import CmpLike from "@/components/like/like"
 import CmpMask from "@/components/mask/mask"
-import { Toast, TreeSelect } from 'vant';
+import { Toast } from 'vant'
 
 import LikeModel from"@/model/like.js";
-const likeModel = new LikeModel();
+const likeModel = new LikeModel()
 import BookModel from "@/model/book.js"
-const bookModel = new BookModel();
+const bookModel = new BookModel()
 
 export default {
   name: "BookDetail",
   components: {
     CmpTag,
     CmpLike,
-    CmpMask
+    CmpMask,
   },
   data() {
     return {
@@ -91,8 +91,8 @@ export default {
       book: null,
       likeStatus: false,
       likeCount: 0,
-      posting: false
-    };
+      posting: false,
+    }
   },
   methods: {
      /**
@@ -246,7 +246,7 @@ export default {
         align-items: center;
         margin-top: 0.3rem;
         background-color: #ffffff;
-        padding: 0.3rem;
+        padding: .3rem;
     }
 
     .headline {
