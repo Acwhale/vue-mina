@@ -10,11 +10,10 @@ class KeyWordModel{
     }
 
     getHot(){
-
+        return axios.get('book/hot_keyword')
     }
     setHistory(word){
         let keywords = this.getHistory()
-        console.log(keywords)
         if (keywords) {
             let index = keywords.indexOf(word)
             if (index == -1) {

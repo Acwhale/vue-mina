@@ -6,12 +6,12 @@
                     <img class="icon" :src="search" alt="">
                     <input placeholder-class='in-bar' placeholder='书籍名' class='bar' 
                             auto-focus v-model="word" @click="handleHistory" />
-                    <img class="cancel-img"  :src="cancel" alt="">
+                    <img @click="handleClose" class="cancel-img"  :src="cancel" alt="">
                 </div>
                 <div class="cancel" @click="handleCancel"> 取消</div>
             </div>
         </div>
-        <div>
+        <div v-show="!searching">
             <div class="history">
                 <div class="title">
                     <div class="chunk"></div>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="tags">
                     <div v-for="(item,key) of history" :key="key"> 
-                        <cmp-tag :text="item"></cmp-tag>
+                        <cmp-tag :text="item" @tag="handleTag"></cmp-tag>
                     </div>
                 </div> 
             </div>
@@ -28,8 +28,19 @@
                     <div class="chunk"></div>
                     <span>热门搜索</span>
                 </div>
+                 <div class="tags">
+                    <div v-for="(item,key) of hotKeyword" :key="key"> 
+                        <cmp-tag :text="item" @tag="handleTag"></cmp-tag>
+                    </div>
+                </div> 
             </div>
         </div>
+        <div class="books-container" v-show="searching">
+            <div v-for="(item,index) of searchResult" :key="index">
+                <cmp-book :book="item"></cmp-book>
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
@@ -37,42 +48,91 @@ import search from './images/search.png'
 import cancel from './images/cancel.png'
 
 import CmpTag from "@/components/tag/tag"
+import CmpBook from "@/components/book/book"
 
 import { Toast } from 'vant'
 
 import keywordModel from './keyword.js'
+import BookModel from '@/model/book.js'
+let bookModel = new BookModel()
 let keyword = new keywordModel()
 export default {
     name:"CmpSearch",
     components:{
-        CmpTag
+        CmpTag,
+        CmpBook
     },
     data(){
         return {
             search,
             cancel,
             word:'',
-            history:[]
+            history:[],
+            hotKeyword:[],
+            searchResult:[],
+            searching:false
         }
     },
     methods:{
+        handleClose(){
+            this.searching = false
+            this.word = ''
+        },
         handleCancel(){
+            this.searching = false
+            this.word = ''
             this.$emit('cancel')
+            
         },
         handleHistory(){
             if(this.word.length == 0){
                 Toast('请输入搜索的内容')
                 return
             }
-            keyword.setHistory(this.word)
+            this.getSearchByWord()   
+        },
+        handleTag(text){
+            this.word = text
+            this.getSearchByWord()
+        },
+        getHotKeyword(){
+            keyword.getHot().then((res)=>{
+                if(res.status == 200 && res.statusText == "OK"){
+                    res = res.data
+                    this.hotKeyword = res.hot
+                }
+            })
+        },
+        getSearchByWord(){
+            this.searching = true
+            bookModel.bookSearch(0,this.word).then(res=>{
+                //历史搜索
+                keyword.setHistory(this.word)
+                if(res.status ==200 && res.statusText == "OK"){
+                    res = res.data
+                    this.searchResult = res.books
+                }
+            })
         }
     },
     mounted(){
         this.history = keyword.getHistory()
+        this.getHotKeyword()
     }
 }
 </script>
 <style lang="stylus" scoped>
+    .books-container{
+        fmargin-top .1rem
+        display flex
+        flex-direction row
+        flex-wrap wrap
+        padding 0 .9rem 0 .9rem
+        justify-content space-around
+    }
+    .books-container cmo-book{
+        margin-bottom .25rem
+    }
     .tags{
         display flex
         flex-direction row

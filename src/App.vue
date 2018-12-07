@@ -2,7 +2,9 @@
   <div id="app" class="header">
     <!-- <img src="./assets/logo.png"> -->
      <div class="title border-bottom">林间有风</div>
-    <router-view/>
+     <keep-alive>
+      <router-view/>
+     </keep-alive>
     <div>
        <van-tabbar v-model="active" >
               <van-tabbar-item to="/">

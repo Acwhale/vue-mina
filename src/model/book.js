@@ -44,6 +44,18 @@ class BookModel {
         }
         return axios.post(url,params)
     }
+     /**
+     *书籍搜索
+     */
+    bookSearch(start,q){
+        let url = 'book/search?summary=1'
+        return  axios.get(url,{
+            params :{
+                start:start,
+                q:q,
+                }
+            })
+    }
 }
 
 export default BookModel
