@@ -130,6 +130,7 @@ export default {
         flex-wrap wrap
         padding 0 .9rem 0 .9rem
         justify-content space-around
+        margin-bottom 1rem
     }
     .books-container cmp-book{
         margin-bottom .3rem

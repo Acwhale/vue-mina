@@ -113,11 +113,36 @@ export default {
                     this.searchResult = res.books
                 }
             })
+        },
+        handleScroll(){
+            let scrollTop = document.documentElement.scrollTop
+            let clientHeight = document.documentElement.clientHeight
+            let scrollHeight = document.documentElement.scrollHeight
+            
+            if(scrollHeight - (scrollTop + clientHeight) == 0){
+                if(!this.word){
+                    return
+                }
+                let length = this.searchResult.length
+                bookModel.bookSearch(length,this.word).then((res)=>{
+                    if(res.status == 200 && res.statusText =="OK"){
+                        res = res.data.books
+                        this.searchResult = this.searchResult.concat(res)
+                    }
+                })
+            }
+                
         }
     },
     mounted(){
         this.history = keyword.getHistory()
         this.getHotKeyword()
+    },
+    activated(){
+        window.addEventListener('scroll',this.handleScroll)
+    },
+    deactivated(){
+        window.removeEventListener('scroll',this.handleScroll)
     }
 }
 </script>
@@ -129,6 +154,7 @@ export default {
         flex-wrap wrap
         padding 0 .9rem 0 .9rem
         justify-content space-around
+        margin-bottom  1rem
     }
     .books-container cmo-book{
         margin-bottom .25rem

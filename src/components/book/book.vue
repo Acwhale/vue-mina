@@ -5,7 +5,7 @@
             <div class="title">{{book.title}}</div>
             <div class="author">{{book.author}}</div>
             <div class="foot">
-                <div class="footer">{{book.fav_nums}} 喜欢</div>
+                <div class="footer" v-if="book.fav_nums">{{book.fav_nums}} 喜欢</div>
             </div>
         </div>
     </div>
