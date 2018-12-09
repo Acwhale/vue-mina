@@ -3,7 +3,7 @@
         <div class="container">
             <div class="header">
                 <cmp-episode class="episode" :index="index"></cmp-episode>
-                <cmp-like  class="like" :like="like" :count="count" @status='handleStatus'></cmp-like>
+                <cmp-like  class="likes" :like="like" :count="count" @status='handleStatus'></cmp-like>
             </div>
             <cmp-movie v-if="category == 100" :img="img" :content="content" ></cmp-movie>
             <cmp-music v-if="category == 200" :img="img" :content="content" :musicSrc="musicSrc"></cmp-music>
@@ -161,7 +161,7 @@ export default {
         margin-left .2rem
         margin-top .1rem
     }
-    .like{
+    .likes{
         margin-top .1rem
     }
     .navi{

@@ -2,7 +2,7 @@
   <div id="app" class="header">
     <!-- <img src="./assets/logo.png"> -->
      <div class="title border-bottom">林间有风</div>
-     <keep-alive>
+     <keep-alive >
       <router-view/>
      </keep-alive>
     <div>

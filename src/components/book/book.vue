@@ -3,7 +3,7 @@
         <img :src="book.image" alt="">
         <div class="description">
             <div class="title">{{book.title}}</div>
-            <div class="author">{{book.author}}</div>
+            <div class="author">{{bookAuthor}}</div>
             <div class="foot">
                 <div class="footer" v-if="book.fav_nums">{{book.fav_nums}} 喜欢</div>
             </div>
@@ -17,6 +17,11 @@ export default {
     name : "CmpBook",
     props:{
         book:Object
+    },
+    computed:{
+        bookAuthor(){
+            return Array.isArray(this.book.author) ? this.book.author[0] : this.book.author
+        }
     }
 }
 </script>

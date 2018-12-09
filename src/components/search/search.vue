@@ -50,7 +50,7 @@ import cancel from './images/cancel.png'
 import CmpTag from "@/components/tag/tag"
 import CmpBook from "@/components/book/book"
 
-import { Toast } from 'vant'
+import { Toast, Tab } from 'vant'
 
 import keywordModel from './keyword.js'
 import BookModel from '@/model/book.js'
@@ -70,12 +70,15 @@ export default {
             history:[],
             hotKeyword:[],
             searchResult:[],
-            searching:false
+            searching:false,
+            loading:false,
+            total:0
         }
     },
     methods:{
         handleClose(){
             this.searching = false
+            this.searchResult = []
             this.word = ''
         },
         handleCancel(){
@@ -110,7 +113,12 @@ export default {
                 keyword.setHistory(this.word)
                 if(res.status ==200 && res.statusText == "OK"){
                     res = res.data
+                    if(res.total == 0 ){
+                        Toast(`暂时没有${this.word}的内容`)
+                        return
+                    }
                     this.searchResult = res.books
+                    this.total = res.total
                 }
             })
         },
@@ -123,15 +131,36 @@ export default {
                 if(!this.word){
                     return
                 }
+                if(this._isLocked()){
+                    return
+                }
                 let length = this.searchResult.length
-                bookModel.bookSearch(length,this.word).then((res)=>{
-                    if(res.status == 200 && res.statusText =="OK"){
-                        res = res.data.books
-                        this.searchResult = this.searchResult.concat(res)
-                    }
-                })
+                if(length != this.total){
+                    // this.loading = true
+                    this._locked()
+                    bookModel.bookSearch(length,this.word).then((res)=>{
+                        if(res.status == 200 && res.statusText =="OK"){
+                            res = res.data.books
+                            this.searchResult = this.searchResult.concat(res)
+                            // this.loading = false
+                            this._unLocked()
+                        }
+                    },()=>{
+                        this._unLocked()
+                    })
+                }
+                
             }
                 
+        },
+        _isLocked(){
+            return this.loading ? true :false
+        },
+        _locked(){
+            this.loading = true
+        },
+        _unLocked(){
+            this.loading = false
         }
     },
     mounted(){

@@ -1,5 +1,5 @@
 <template>
-    <div class="container" @click="onLike" >
+    <div class="containers" @click="onLike" >
         <img :src="selfLike ? yesSrc : noSrc" alt="like">
         <span >{{selfCount}}</span>
     </div>
@@ -49,15 +49,15 @@ export default {
         }
     },
     // mounted(){
-    //     this.selfLike = this.like
-    //     this.selfCount = this.count 
+    //     console.log(this.like)
+    //     console.log(this.count)
     // }
     
 }
 </script>
 <style lang='stylus' scoped>
     @import '~@/assets/style/varibles.styl'
-    .container
+    .containers
         display inline-flex
         flex-direction row
         position relative

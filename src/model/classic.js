@@ -36,6 +36,13 @@ class ClassicModel  {
            console.log(error)
        }  
     }
+    /**
+     * 获取我喜欢的期刊
+     */
+    getfavCalssic(){
+        let url = 'classic/favor'
+        return axios.get(url)
+    }
 }
 
 export default ClassicModel

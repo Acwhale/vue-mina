@@ -56,6 +56,13 @@ class BookModel {
                 }
             })
     }
+    /**
+     * 获取喜欢书籍数量
+     */
+    getfavCount(){
+        let url = 'book/favor/count'
+        return axios.get(url)
+    }
 }
 
 export default BookModel
