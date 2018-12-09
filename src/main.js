@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 axios.defaults.baseURL = 'http://bl.7yue.pro/v1/';
 // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers['Content-Type'] = 'application/json';
-axios.defaults.headers['appkey'] = config.appkey;
+axios.defaults.headers['appkey'] = 'xJW1wcWQBDj3FBpX';
 /* eslint-disable no-new */
 fastclick.attach(document.body)
 import { Toast } from 'vant';
