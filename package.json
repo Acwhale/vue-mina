@@ -9,6 +9,7 @@
     "start": "npm run dev",
     "build": "node build/build.js"
   },
+  "homepage":"https://acwhale.github.io/vue-mina",
   "dependencies": {
     "axios": "^0.18.0",
     "fastclick": "^1.0.6",
