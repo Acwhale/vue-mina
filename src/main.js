@@ -9,7 +9,7 @@ import './assets/style/border.css'
 import axios from 'axios'
 import config from '@/util/config'
 Vue.config.productionTip = false
-axios.defaults.baseURL = 'http://bl.7yue.pro/v1/';
+axios.defaults.baseURL = '/api';
 // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers['Content-Type'] = 'application/json';
 axios.defaults.headers['appkey'] = 'xJW1wcWQBDj3FBpX';

@@ -11,13 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // '/api': {
-      //   target: 'http://bl.7yue.pro/v1/',
-      //   changeOrigin: true, //可否跨域
-      //   pathRewrite: {
-      //     '^/api': ''
-      //   },
-      // }
+      '/api': {
+        target: 'http://bl.7yue.pro/v1/',
+        changeOrigin: true, //可否跨域
+        pathRewrite: {
+          '^/api': ''
+        },
+      }
     },
 
     // Various Dev Server settings
